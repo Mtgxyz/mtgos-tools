@@ -27,3 +27,10 @@
 *.exe
 *.out
 *.app
+
+#CMake
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+mtgtools.h
