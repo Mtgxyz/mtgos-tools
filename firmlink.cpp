@@ -31,10 +31,9 @@ int main(int argc, char** argv) {
     FIRM_header header;
     //Populate header
     char * tmp="FIRM";
+    memset(&header,0,sizeof(header));
     memcpy(header.magic,tmp,4);
     header.reserved1=0;
-    memset(header.reserved2,0,sizeof(header.reserved2));
-    memset(header.RSA2048,0,sizeof(header.RSA2048));
     header.arm11Entry=0x1FF80000;
     header.arm9Entry=0x08000000;
     char opt = (char)getopt(argc, argv, "O:o:e:E:"); //O = load point of segment; o= output file; e=ARM9 entry; E=ARM11 entry
@@ -78,6 +77,7 @@ int main(int argc, char** argv) {
     std::cout << "Found " << infiles.size() << " input files..." << std::endl;
     std::ifstream files[4];
     int foffset=sizeof(FIRM_header);
+    header.sections[0].size=header.sections[1].size=header.sections[2].size=header.sections[3].size=0;
     for(int i=0;i<MIN(MIN(infiles.size(),offsets.size()),4);i++) {
         header.sections[i].offset=foffset;
         header.sections[i].physical=offsets[i];
