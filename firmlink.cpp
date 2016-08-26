@@ -12,7 +12,7 @@ struct FIRM_sect {
     uint32_t offset;
     uint32_t physical;
     uint32_t size;
-    bool arm11;
+    uint32_t arm11;
     uint8_t SHA256[0x20]; //Implement later.
 }__attribute__((packed));
 struct FIRM_header {
